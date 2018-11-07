@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace LP2_Projeto1
 {
@@ -6,7 +7,12 @@ namespace LP2_Projeto1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            string[] game = File.ReadAllLines("games.csv");
+
+            for (int i = 1; i < game.Length; i++)
+            {
+                Game g = new Game(game[i]);
+            }
         }
     }
 }
