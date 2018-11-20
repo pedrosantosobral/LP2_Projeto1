@@ -32,35 +32,42 @@ namespace LP2_Projeto1
         private Uri header_image;
         private Uri website;
 
-        public Game(string s)
+        public Game(int id, string name, DateTime release_date, int required_age,
+                    int dlc_counts, int metacritic, int movie_count, 
+                    int recommendation_count, int screenshot_count, int owners, 
+                    int number_of_players, int achievment_count, 
+                    bool controller_support, bool platform_windows, 
+                    bool platform_linux, bool platform_mac, 
+                    bool category_singleplayer,bool category_multiplayer,
+                   bool category_coop, bool category_include_level_editor, 
+                    bool category_vr_support, Uri support_url, string about_text,
+                    Uri header_image, Uri website)
         {
-            string[] str = s.Split(",");
-
-            id = Convert.ToInt32(str[0]);
-            name = str[1];
-            release_date = Convert.ToDateTime(str[2]);
-            required_age = Convert.ToInt32(str[3]);
-            dlc_counts = Convert.ToInt32(str[4]);
-            metacritic = Convert.ToInt32(str[5]);
-            movie_count = Convert.ToInt32(str[6]);
-            recommendation_count = Convert.ToInt32(str[7]);
-            screenshot_count = Convert.ToInt32(str[8]);
-            owners = Convert.ToInt32(str[9]);
-            number_of_players = Convert.ToInt32(str[10]);
-            achievment_count = Convert.ToInt32(str[11]);
-            controller_support = Convert.ToBoolean(str[12]);
-            platform_windows = Convert.ToBoolean(str[13]);
-            platform_linux = Convert.ToBoolean(str[14]);
-            platform_mac = Convert.ToBoolean(str[15]);
-            category_singleplayer = Convert.ToBoolean(str[16]);
-            category_multiplayer = Convert.ToBoolean(str[17]);
-            category_coop = Convert.ToBoolean(str[18]);
-            category_include_level_editor = Convert.ToBoolean(str[19]);
-            category_vr_support = Convert.ToBoolean(str[20]);
-            support_url = new Uri(str[21]);
-            about_text = str[22];
-            header_image = new Uri(str[23]);
-            website = new Uri(str[24]);
+            this.id = id;
+            this.name = name;
+            this.release_date = release_date;
+            this.required_age = required_age;
+            this.dlc_counts = dlc_counts;
+            this.metacritic = metacritic;
+            this.movie_count = movie_count;
+            this.recommendation_count = recommendation_count;
+            this.screenshot_count = screenshot_count;
+            this.owners = owners;
+            this.number_of_players = number_of_players;
+            this.achievment_count = achievment_count;
+            this.controller_support = controller_support;
+            this.platform_windows = platform_windows;
+            this.platform_mac = platform_mac;
+            this.platform_linux = platform_linux;
+            this.category_singleplayer = category_singleplayer;
+            this.category_multiplayer = category_multiplayer;
+            this.category_coop = category_coop;
+            this.category_include_level_editor = category_include_level_editor;
+            this.category_vr_support = category_vr_support;
+            this.support_url = support_url;
+            this.about_text = about_text;
+            this.header_image = header_image;
+            this.website = website;
 
         }
     }
