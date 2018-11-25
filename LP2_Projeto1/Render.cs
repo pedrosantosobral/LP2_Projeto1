@@ -5,15 +5,15 @@ namespace LPprojeto1MinhaCopia
     public class Render
     {
         List<Game> searchList;
+        Filters filters;
 
         public Render(List<Game> searchList)
         {
             this.searchList = searchList;
+            filters = new Filters(searchList);
         }
 
-        public string[] selections = { "NONE", "NONE", "NONE", 
-            "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", 
-            "NONE", "NONE", "NONE", "NONE" , "NONE"};
+        public string[] selections = new string[14];
 
         public void ShowMainMenu()
         {
@@ -30,34 +30,31 @@ namespace LPprojeto1MinhaCopia
                 case 1:
                     Console.Clear();
                     Console.WriteLine("INSERT DESIRED GAME ID TO SHOW:");
-                    selections[15]= Console.ReadLine();
-                    if (selections[15] != "NONE")
-                    {
-                        int desiredID = Convert.ToInt32(selections[15]);
-                        if ((desiredID % 10) == 0)
+                    string temp = Console.ReadLine();
+                        if (int.TryParse(temp, out int id))
                         {
-                            foreach (Game g in searchList)
+                            if ((id % 10) == 0)
                             {
-                                if (g.id == desiredID)
+                                foreach (Game g in searchList)
                                 {
-                                    g.PrintAllValues();
-                                    break;
-                                }
-                                else
-                                {
-                                    Console.Clear();
-                                    Console.WriteLine("This game does not exist");
+                                    if (g.id == id)
+                                    {
+                                        g.PrintAllValues();
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        Console.Clear();
+                                        Console.WriteLine("This game does not exist");
+                                    }
                                 }
                             }
+                            else
+                            {
+                                Console.Clear();
+                                Console.WriteLine("This game does not exist");
+                            }
                         }
-                        else
-                        {
-                            Console.Clear();
-                            Console.WriteLine("This game does not exist");
-                        }
-
-
-                    }
                     break;
                 case 2:
                     Console.Clear();
@@ -183,8 +180,12 @@ namespace LPprojeto1MinhaCopia
 
         public void ShowFilterMenu() 
         {
-            Console.WriteLine("Filters added: {0} | {1} | {2} | {3} | {4} | {5} | {6} | {7} | " +
-                              "{8} | {9} | {10} | {11} | {12} | {13} ", selections[0], selections[1],
+            Console.WriteLine("Filters added: NAME; {0} | DATE: {1} | AGE: {2} |" +
+                              " METACRITIC: {3} | RECOMENDATIONS: {4} |" +
+                              " CONTROLER SUPPORT {5} | FOR WINDOWS: {6} |" +
+                              " FOR LINUX: {7} | FOR MAC: " +
+                              "{8} | SINGLEPLAYER: {9} | MULTIPLAYER: {10} | " +
+                              "COOPERATIVA {11} | LEVEL EDITOR: {12} | VR SUPORT: {13} ", selections[0], selections[1],
                               selections[2], selections[3], selections[4], selections[5],
                               selections[6], selections[7], selections[8], selections[9],
                               selections[10], selections[11], selections[12], selections[13]);
@@ -212,90 +213,90 @@ namespace LPprojeto1MinhaCopia
             switch (choice3)
             {
                 case 1:
-                    selections[0] = "NAME";
+                    Console.Clear();
+                    Console.WriteLine("INSERT NAME");
+                    selections[0] = Console.ReadLine();
                     Console.Clear();
                     ShowFilterMenu();
                     break;
                 case 2:
-                    selections[1] = "DATA";
+                    Console.Clear();
+                    Console.WriteLine("INSERT DATE(DAY/MONTH/YEAR)");
+                    selections[1] = Console.ReadLine();
                     Console.Clear();
                     ShowFilterMenu();
                     break;
                 case 3:
-                    selections[2] = "AGE";
+                    Console.Clear();
+                    Console.WriteLine("INSERT AGE");
+                    selections[2] = Console.ReadLine();
                     Console.Clear();
                     ShowFilterMenu();
                     break;
                 case 4:
-                    selections[3] = "METACRITIC";
+                    Console.Clear();
+                    Console.WriteLine("INSERT DATE(DAY/MONTH/YEAR)");
+                    selections[3] = Console.ReadLine();
                     Console.Clear();
                     ShowFilterMenu();
                     break;
                 case 5:
-                    selections[4] = "RECOMENDATIONS";
+                    Console.Clear();
+                    Console.WriteLine("INSERT DATE(DAY/MONTH/YEAR)");
+                    selections[4] = Console.ReadLine();
                     Console.Clear();
                     ShowFilterMenu();
                     break;
                 case 6:
-                    selections[5] = "CONTROLLER SUPPORT";
+                    selections[5] = "TRUE";
                     Console.Clear();
                     ShowFilterMenu();
                     break;
                 case 7:
-                    selections[6] = "FOR WINDOWS";
+                    selections[6] = "TRUE";
                     Console.Clear();
                     ShowFilterMenu();
                     break;
                 case 8:
-                    selections[7] = "FOR LINUX";
+                    selections[7] = "TRUE";
                     Console.Clear();
                     ShowFilterMenu();
                     break;
                 case 9:
-                    selections[8] = "FOR MAC :3";
+                    selections[8] = "TRUE";
                     Console.Clear();
                     ShowFilterMenu();
                     break;
                 case 10:
-                    selections[9] = "SINGLEPLAYER";
+                    selections[9] = "TRUE";
                     Console.Clear();
                     ShowFilterMenu();
                     break;
                 case 11:
-                    selections[10] = "MULTIPLAYER";
+                    selections[10] = "TRUE";
                     Console.Clear();
                     ShowFilterMenu();
                     break;
                 case 12:
-                    selections[11] = "COOPERATIVE";
+                    selections[11] = "TRUE";
                     Console.Clear();
                     ShowFilterMenu();
                     break;
                 case 13:
-                    selections[12] = "LEVEL EDITOR";
+                    selections[12] = "TRUE";
                     Console.Clear();
                     ShowFilterMenu();
                     break;
                 case 14:
-                    selections[13] = "VR SUPPORT";
+                    selections[13] = "TRUE";
                     Console.Clear();
                     ShowFilterMenu();
                     break;
                 case 15:
-                    selections[0] = "NONE";
-                    selections[1] = "NONE";
-                    selections[2] = "NONE";
-                    selections[3] = "NONE";
-                    selections[4] = "NONE";
-                    selections[5] = "NONE";
-                    selections[6] = "NONE";
-                    selections[7] = "NONE";
-                    selections[8] = "NONE";
-                    selections[9] = "NONE";
-                    selections[10] = "NONE";
-                    selections[11] = "NONE";
-                    selections[12] = "NONE";
-                    selections[13] = "NONE";
+                    for (int i = 0; i < selections.Length; i++)
+                    {
+                        selections[i] = null;
+                    }
                     Console.Clear();
                     ShowFilterMenu();
                     break;
@@ -305,8 +306,9 @@ namespace LPprojeto1MinhaCopia
                     break;
             }
 
-        }
+            filters.ApplyFilters(selections);
 
+        }
 
     }
 
