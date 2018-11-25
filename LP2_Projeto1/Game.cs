@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
+using System.Net;
 namespace LPprojeto1MinhaCopia
 {
     public class Game
@@ -123,6 +122,17 @@ namespace LPprojeto1MinhaCopia
             }
 
             return s;
+        }
+
+        public void DownloadImage()
+        {
+            using(WebClient client = new WebClient())
+            {
+                if (header_image != null)
+                    client.DownloadFile(header_image, "image.jpg");
+            }
+
+            Process.Start("image.jpg");
         }
     }
 }
