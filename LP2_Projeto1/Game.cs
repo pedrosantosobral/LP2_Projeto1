@@ -6,7 +6,7 @@ namespace LPprojeto1MinhaCopia
 {
     public class Game
     {
-        private int id;
+        internal readonly int id;
         private string name;
         private DateTime release_date;
         private int required_age;
@@ -65,7 +65,6 @@ namespace LPprojeto1MinhaCopia
             Console.WriteLine("about: " + about_text);
             Console.WriteLine("image url: " + PrintUrl(header_image));
             Console.WriteLine("prints url: " + PrintUrl(website));
-
         }
 
 
