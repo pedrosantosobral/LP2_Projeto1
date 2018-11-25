@@ -40,31 +40,31 @@ namespace LPprojeto1MinhaCopia
 
         public void PrintAllValues()
         {
-            Console.WriteLine("id: " + id);
-            Console.WriteLine("name: " + name);
-            Console.WriteLine("release date: " + release_date.ToString());
-            Console.WriteLine("minimum age:" + required_age);
+            Console.WriteLine("ID: " + id);
+            Console.WriteLine("NAME: " + name);
+            Console.WriteLine("RELEASE DATE: " + release_date.ToString());
+            Console.WriteLine("MINIMUM:" + required_age);
             Console.WriteLine("DLCs:" + dlc_counts);
-            Console.WriteLine("metacritic: " + metacritic);
-            Console.WriteLine("movies: " + movie_count);
-            Console.WriteLine("recomendation: " + recommendation_count);
-            Console.WriteLine("screenshots :" + screenshot_count);
-            Console.WriteLine("purchases: " + owners);
-            Console.WriteLine("players: " + number_of_players);
-            Console.WriteLine("achievements: " + achievment_count);
-            Console.WriteLine("have controls: " + controller_support);
-            Console.WriteLine("windows?: " + platform_windows);
-            Console.WriteLine("linux?: " + platform_linux);
-            Console.WriteLine("macOS?: " + platform_mac);
-            Console.WriteLine("sigle player?: " + category_singleplayer);
-            Console.WriteLine("multiplayer?: " + category_multiplayer);
-            Console.WriteLine("coop?: " + category_coop);
-            Console.WriteLine("level editor?: " + category_include_level_editor);
-            Console.WriteLine("vr support?: " + category_vr_support);
-            Console.WriteLine("site: " + PrintUrl(support_url));
-            Console.WriteLine("about: " + about_text);
-            Console.WriteLine("image url: " + PrintUrl(header_image));
-            Console.WriteLine("prints url: " + PrintUrl(website));
+            Console.WriteLine("METACRITIC: " + metacritic);
+            Console.WriteLine("MOVIES: " + movie_count);
+            Console.WriteLine("RECOMENDATIONS: " + recommendation_count);
+            Console.WriteLine("SCRENSHOTS :" + screenshot_count);
+            Console.WriteLine("PURCHASES: " + owners);
+            Console.WriteLine("NUMBER OF PLAYERS: " + number_of_players);
+            Console.WriteLine("ACHIEVEMENTS: " + achievment_count);
+            Console.WriteLine("CONTROLER SUPORT: " + controller_support);
+            Console.WriteLine("WINDOWS PLATFORM?: " + platform_windows);
+            Console.WriteLine("LINUX PLATFORM: " + platform_linux);
+            Console.WriteLine("WINDOWS PLATFORM: " + platform_mac);
+            Console.WriteLine("SINGLEPLAYER: " + category_singleplayer);
+            Console.WriteLine("MULTIPLAYER: " + category_multiplayer);
+            Console.WriteLine("COOP?: " + category_coop);
+            Console.WriteLine("LEVEL EDITOR: " + category_include_level_editor);
+            Console.WriteLine("VR SUPPORT: " + category_vr_support);
+            Console.WriteLine("SITE: " + PrintUrl(support_url));
+            Console.WriteLine("ABOUT: " + about_text);
+            Console.WriteLine("IMAGE URL: " + PrintUrl(header_image));
+            Console.WriteLine("PRINTS URL: " + PrintUrl(website));
         }
 
 
