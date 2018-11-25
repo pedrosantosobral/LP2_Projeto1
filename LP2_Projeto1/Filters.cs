@@ -5,7 +5,6 @@ namespace LPprojeto1MinhaCopia
 {
     public class Filters
     {
-        private string[] selections;
         public List<Game> filteredList;
         public List<Game> searchList;
 
@@ -16,94 +15,99 @@ namespace LPprojeto1MinhaCopia
             filteredList = searchList;
         }
 
-        public void ApplyFilters(string[] selections)
+        public void ApplyFilters(bool[] boolFilters, int[] intFilters, 
+                                 string name, DateTime dt)
         {
-            if(selections[0] != null)
+            if(name != null)
             {
                 filteredList = filteredList.Where(game => 
-                game.name.ToLower().Contains(selections[0].ToLower())).ToList();
+                game.name.ToLower().Contains(name.ToLower())).ToList();
             }
 
-            if(DateTime.TryParse(selections[1], out DateTime dt))
+            if(dt != DateTime.MinValue)
             {
                 filteredList = filteredList.Where(game => game.release_date > 
-                                                  dt).ToList();
+                dt).ToList();
             }
 
-            if (int.TryParse(selections[2], out int req_age))
+            if (intFilters[0] != 0)
             {
                 filteredList = filteredList.Where(game => game.required_age >
-                                                  req_age).ToList();
+                                                  intFilters[0]).ToList();
             }
 
 
-            if (int.TryParse(selections[3], out int meta))
+            if (intFilters[1] != 0)
             {
                 filteredList = filteredList.Where(game => game.metacritic >
-                                                  meta).ToList();
+                                                  intFilters[1]).ToList();
             }
 
 
-            if (int.TryParse(selections[4], out int recommendation))
+            if (intFilters[2] != 0)
             {
                 filteredList = filteredList.Where(game => game.recommendation_count >
-                                                  recommendation).ToList();
+                                                  intFilters[2]).ToList();
             }
 
-            if (selections[5] != null)
+            if (boolFilters[0] != false)
             {
                 filteredList = filteredList.Where(game => game.controller_support 
                                                   == true).ToList();
             }
 
-            if (selections[6] != null)
+            if (boolFilters[1] != false)
             {
                 filteredList = filteredList.Where(game => game.platform_windows
                                                   == true).ToList();
             }
 
-            if (selections[7] != null)
+            if (boolFilters[2] != false)
             {
                 filteredList = filteredList.Where(game => game.platform_linux
                                                   == true).ToList();
             }
 
-            if (selections[8] != null)
+            if (boolFilters[3] != false)
             {
                 filteredList = filteredList.Where(game => game.platform_mac
                                                   == true).ToList();
             }
 
-            if (selections[9] != null)
+            if (boolFilters[4] != false)
             {
                 filteredList = filteredList.Where(game => game.category_singleplayer
                                                   == true).ToList();
             }
 
-            if (selections[10] != null)
+            if (boolFilters[5] != false)
             {
                 filteredList = filteredList.Where(game => game.category_multiplayer
                                                   == true).ToList();
             }
 
-            if (selections[11] != null)
+            if (boolFilters[6] != false)
             {
                 filteredList = filteredList.Where(game => game.category_coop
                                                   == true).ToList();
             }
 
-            if (selections[12] != null)
+            if (boolFilters[7] != false)
             {
                 filteredList = filteredList.Where(game => game.category_include_level_editor
                                                   == true).ToList();
             }
 
-            if (selections[13] != null)
+            if (boolFilters[8] != false)
             {
                 filteredList = filteredList.Where(game => game.category_vr_support
                                                   == true).ToList();
             }
 
+        }
+
+        public void Search()
+        {
         }
 
     }
