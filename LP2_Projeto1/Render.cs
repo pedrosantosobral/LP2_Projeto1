@@ -4,20 +4,48 @@ namespace LPprojeto1MinhaCopia
 {
     public class Render
     {
-        public string[] selections = new string[15]{ "NONE", "NONE", "NONE", 
+        public string[] selections = { "NONE", "NONE", "NONE", 
             "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", 
             "NONE", "NONE", "NONE", "NONE"};
 
-        public bool ShowMainMenu()
+        public void ShowMainMenu()
+        {
+            Console.WriteLine("WELCOME TO CHINA STEAM DATABASE :D");
+            Console.WriteLine("PICK AN OPTION:");
+            Console.WriteLine("1 -> SHOW A GAME INFO");
+            Console.WriteLine("2 -> MAKE ADVANCED SEARCH");
+            Console.WriteLine("3 -> EXIT");
+
+            int choice0 = Convert.ToInt32(Console.ReadLine());
+
+            switch(choice0)
+            {
+                case 1:
+                    Console.Clear();
+                    ShowMainMenu();
+                    //ShowGame();
+                    break;
+                case 2:
+                    Console.Clear();
+                    ShowSearchMenu();
+                    break;
+                case 3:
+                    System.Environment.Exit(0);
+                    break;
+            }
+
+        }
+
+        public bool ShowSearchMenu()
         {
             bool returnvalue = false;
 
-            Console.WriteLine("Pick a option");
+            Console.WriteLine("PICK AN OPTION:");
             Console.WriteLine("1 -> PICK ORDERING TYPE | CURRENT IS " + selections[14]);
             Console.WriteLine("2 -> PICK FILTERS");
             Console.WriteLine("3 -> START SEARCH");
             Console.WriteLine("");
-            Console.WriteLine("0 -> QUIT");
+            Console.WriteLine("0 -> BACK");
 
             int choice1 = Convert.ToInt32(Console.ReadLine());
 
@@ -37,7 +65,7 @@ namespace LPprojeto1MinhaCopia
                     break;
                 case 0:
                     Console.Clear();
-                    System.Environment.Exit(0);
+                    ShowMainMenu();
                     break;
             }
 
@@ -48,7 +76,7 @@ namespace LPprojeto1MinhaCopia
         {
             Console.WriteLine("CURRENT ORDERING TYPE: " + selections[14]);
             Console.WriteLine("");
-            Console.WriteLine("Pick one order type:");
+            Console.WriteLine("PICK ONE ORDER TYPE:");
             Console.WriteLine("1 -> ID");
             Console.WriteLine("2 -> NAME");
             Console.WriteLine("3 -> LAUNCH DATE");
@@ -68,52 +96,52 @@ namespace LPprojeto1MinhaCopia
                 case 1:
                     selections[14] = "ID";
                     Console.Clear();
-                    ShowMainMenu();
+                    ShowSearchMenu();
                     break;
                 case 2:
                     selections[14] = "NAME";
                     Console.Clear();
-                    ShowMainMenu();
+                    ShowSearchMenu();
                     break;
                 case 3:
                     selections[14] = "LAUNCH DATE";
                     Console.Clear();
-                    ShowMainMenu();
+                    ShowSearchMenu();
                     break;
                 case 4:
                     selections[14] = "METACRITIC";
                     Console.Clear();
-                    ShowMainMenu();
+                    ShowSearchMenu();
                     break;
                 case 5:
                     selections[14] = "NUMBER OF DLCs";
                     Console.Clear();
-                    ShowMainMenu();
+                    ShowSearchMenu();
                     break;
                 case 6:
                     selections[14] = "RECOMENDATIONS";
                     Console.Clear();
-                    ShowMainMenu();
+                    ShowSearchMenu();
                     break;
                 case 7:
                     selections[14] = "NUMBER OF OWNERS";
                     Console.Clear();
-                    ShowMainMenu();
+                    ShowSearchMenu();
                     break;
                 case 8:
                     selections[14] = "NUMBER OF PLAYERS";
                     Console.Clear();
-                    ShowMainMenu();
+                    ShowSearchMenu();
                     break;
                 case 9:
                     selections[14] = "NUMBER OF ACHIEVEMENTS";
                     Console.Clear();
-                    ShowMainMenu();
+                    ShowSearchMenu();
                     break;
                 case 0:
                     selections[14] = "NONE";
                     Console.Clear();
-                    ShowMainMenu();
+                    ShowSearchMenu();
                     break;
             }
 
@@ -121,12 +149,12 @@ namespace LPprojeto1MinhaCopia
 
         public void ShowFilterMenu() 
         {
-            Console.WriteLine("Filters added: {0} {1} {2} {3} {4} {5} {6} {7} " +
-                              "{8} {9} {10} {11} {12} ", selections[0],selections[1],
-                              selections[2], selections[3],selections[4],selections[5],
-                              selections[6],selections[7],selections[8],selections[9],
-                              selections[10],selections[11],selections[12],selections[13]);
-            Console.WriteLine("Add filters: ");
+            Console.WriteLine("Filters added: {0} | {1} | {2} | {3} | {4} | {5} | {6} | {7} | " +
+                              "{8} | {9} | {10} | {11} | {12} | {13} ", selections[0], selections[1],
+                              selections[2], selections[3], selections[4], selections[5],
+                              selections[6], selections[7], selections[8], selections[9],
+                              selections[10], selections[11], selections[12], selections[13]);
+            Console.WriteLine("ADD FILTERS: ");
             Console.WriteLine("1  -> NAME");
             Console.WriteLine("2  -> DATE");
             Console.WriteLine("3  -> AGE");
@@ -219,9 +247,27 @@ namespace LPprojeto1MinhaCopia
                     Console.Clear();
                     ShowFilterMenu();
                     break;
+                case 15:
+                    selections[0] = "NONE";
+                    selections[1] = "NONE";
+                    selections[2] = "NONE";
+                    selections[3] = "NONE";
+                    selections[4] = "NONE";
+                    selections[5] = "NONE";
+                    selections[6] = "NONE";
+                    selections[7] = "NONE";
+                    selections[8] = "NONE";
+                    selections[9] = "NONE";
+                    selections[10] = "NONE";
+                    selections[11] = "NONE";
+                    selections[12] = "NONE";
+                    selections[13] = "NONE";
+                    Console.Clear();
+                    ShowFilterMenu();
+                    break;
                 case 0:
                     Console.Clear();
-                    ShowMainMenu();
+                    ShowSearchMenu();
                     break;
             }
 
