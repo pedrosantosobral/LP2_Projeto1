@@ -1,143 +1,110 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 namespace LPprojeto1MinhaCopia
 {
     public class Filters
     {
         private string[] selections;
-        public List<Game> filteredList = new List<Game>();
+        public List<Game> filteredList;
         public List<Game> searchList;
-        bool isRepeatedFlag = false;
-        bool i = false;
 
-        public Filters(string[] selections, List<Game> searchList)
+
+        public Filters(List<Game> searchList)
         {
-            this.selections = selections;
             this.searchList = searchList;
+            filteredList = searchList;
         }
 
-        public void SpecifyFilters()
+        public void ApplyFilters(string[] selections)
         {
-            if (selections[0].ToUpper() != "NONE")
+            if(selections[0] != null)
             {
+                filteredList = filteredList.Where(game => 
+                game.name.ToLower().Contains(selections[0].ToLower())).ToList();
+            }
 
-            }
-            if (selections[1].ToUpper() != "NONE")
+            if(DateTime.TryParse(selections[1], out DateTime dt))
             {
-                //todo
-                //Method();
+                filteredList = filteredList.Where(game => game.release_date > 
+                                                  dt).ToList();
             }
-            if (selections[2].ToUpper() != "NONE")
+
+            if (int.TryParse(selections[2], out int req_age))
             {
-                //todo
-                //Method();
+                filteredList = filteredList.Where(game => game.required_age >
+                                                  req_age).ToList();
             }
-            if (selections[3].ToUpper() != "NONE")
+
+
+            if (int.TryParse(selections[3], out int meta))
             {
-                //todo
-                //Method();
+                filteredList = filteredList.Where(game => game.metacritic >
+                                                  meta).ToList();
             }
-            if (selections[4].ToUpper() != "NONE")
+
+
+            if (int.TryParse(selections[4], out int recommendation))
             {
-                //todo
-                //Method();
+                filteredList = filteredList.Where(game => game.recommendation_count >
+                                                  recommendation).ToList();
             }
-            if (selections[5].ToUpper() != "NONE")
+
+            if (selections[5] != null)
             {
-                selections[5] = "TRUE";
+                filteredList = filteredList.Where(game => game.controller_support 
+                                                  == true).ToList();
             }
-            if (selections[6].ToUpper() != "NONE")
+
+            if (selections[6] != null)
             {
-                selections[6] = "TRUE";
+                filteredList = filteredList.Where(game => game.platform_windows
+                                                  == true).ToList();
             }
-            if (selections[7].ToUpper() != "NONE")
+
+            if (selections[7] != null)
             {
-                selections[7] = "TRUE";
+                filteredList = filteredList.Where(game => game.platform_linux
+                                                  == true).ToList();
             }
-            if (selections[8].ToUpper() != "NONE")
+
+            if (selections[8] != null)
             {
-                selections[8] = "TRUE";
+                filteredList = filteredList.Where(game => game.platform_mac
+                                                  == true).ToList();
             }
-            if (selections[9].ToUpper() != "NONE")
+
+            if (selections[9] != null)
             {
-                selections[9] = "TRUE";
+                filteredList = filteredList.Where(game => game.category_singleplayer
+                                                  == true).ToList();
             }
-            if (selections[10].ToUpper() != "NONE")
+
+            if (selections[10] != null)
             {
-                selections[10] = "TRUE";
+                filteredList = filteredList.Where(game => game.category_multiplayer
+                                                  == true).ToList();
             }
-            if (selections[11].ToUpper() != "NONE")
+
+            if (selections[11] != null)
             {
-                selections[11] = "TRUE";
+                filteredList = filteredList.Where(game => game.category_coop
+                                                  == true).ToList();
             }
-            if (selections[12].ToUpper() != "NONE")
+
+            if (selections[12] != null)
             {
-                selections[12] = "TRUE";
+                filteredList = filteredList.Where(game => game.category_include_level_editor
+                                                  == true).ToList();
             }
-            if (selections[13].ToUpper() != "NONE")
+
+            if (selections[13] != null)
             {
-                selections[13] = "TRUE";
+                filteredList = filteredList.Where(game => game.category_vr_support
+                                                  == true).ToList();
             }
+
         }
-
-        public bool SearchBool(string[] s, Game g)
-        {
-
-
-            if (Convert.ToBoolean(s[5]) == g.controller_support && isRepeatedFlag == false)
-            {
-                isRepeatedFlag = true;
-                filteredList.Add(g);
-            }
-            if (Convert.ToBoolean(s[6]) == g.platform_windows && isRepeatedFlag == false)
-            {
-                isRepeatedFlag = true;
-                filteredList.Add(g);
-            }
-            if (Convert.ToBoolean(s[7]) == g.platform_linux && isRepeatedFlag == false)
-            {
-                isRepeatedFlag = true;
-                filteredList.Add(g);
-            }
-            if (Convert.ToBoolean(s[8]) == g.platform_mac && isRepeatedFlag == false)
-            {
-                isRepeatedFlag = true;
-                filteredList.Add(g);
-            }
-            if (Convert.ToBoolean(s[9]) == g.category_singleplayer && isRepeatedFlag == false)
-            {
-                isRepeatedFlag = true;
-                filteredList.Add(g);
-            }
-            if (Convert.ToBoolean(s[10]) == g.category_multiplayer && isRepeatedFlag == false)
-            {
-                isRepeatedFlag = true;
-                filteredList.Add(g);
-            }
-            if (Convert.ToBoolean(s[11]) == g.category_coop && isRepeatedFlag == false)
-            {
-                isRepeatedFlag = true;
-                filteredList.Add(g);
-            }
-            if (Convert.ToBoolean(s[12]) == g.category_include_level_editor && isRepeatedFlag == false)
-            {
-                isRepeatedFlag = true;
-                filteredList.Add(g);
-            }
-            if (Convert.ToBoolean(s[13]) == g.category_vr_support && isRepeatedFlag == false)
-            {
-                isRepeatedFlag = true;
-                filteredList.Add(g);
-            }
-            return isRepeatedFlag;
-        }
-
-
-
-
-
-
-
 
     }
 }
