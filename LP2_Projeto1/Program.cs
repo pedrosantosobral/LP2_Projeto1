@@ -1,18 +1,17 @@
 ﻿using System;
 using System.IO;
 
-namespace LP2_Projeto1
+namespace LPprojeto1MinhaCopia
 {
     class Program
     {
         static void Main(string[] args)
         {
-            string[] game = File.ReadAllLines("games.csv");
-
-            for (int i = 1; i < game.Length; i++)
-            {
-                Game g = new Game(game[i]);
-            }
+            Render render = new Render();
+            render.ShowMainMenu();
+         
+            ReadFile file = new ReadFile("/Users/joanamarques/Desktop/LP2_Projeto1/LP2_Projeto1/games.csv");
+            file.searchList[0].PrintAllValues();
         }
     }
 }
