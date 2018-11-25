@@ -7,30 +7,30 @@ namespace LPprojeto1MinhaCopia
     public class Game
     {
         internal readonly int id;
-        private string name;
-        private DateTime release_date;
-        private int required_age;
-        private int dlc_counts;
-        private int metacritic;
-        private int movie_count;
-        private int recommendation_count;
-        private int screenshot_count;
-        private int owners;
-        private int number_of_players;
-        private int achievment_count;
-        private bool controller_support;
-        private bool platform_windows;
-        private bool platform_linux;
-        private bool platform_mac;
-        private bool category_singleplayer;
-        private bool category_multiplayer;
-        private bool category_coop;
-        private bool category_include_level_editor;
-        private bool category_vr_support;
-        private Uri support_url;
-        private string about_text;
-        private Uri header_image;
-        private Uri website;
+        internal readonly string name;
+        internal readonly DateTime release_date;
+        internal readonly int required_age;
+        internal readonly int dlc_counts;
+        internal readonly int metacritic;
+        internal readonly int movie_count;
+        internal readonly int recommendation_count;
+        internal readonly int screenshot_count;
+        internal readonly int owners;
+        internal readonly int number_of_players;
+        internal readonly int achievment_count;
+        internal readonly bool controller_support;
+        internal readonly bool platform_windows;
+        internal readonly bool platform_linux;
+        internal readonly bool platform_mac;
+        internal readonly bool category_singleplayer;
+        internal readonly bool category_multiplayer;
+        internal readonly bool category_coop;
+        internal readonly bool category_include_level_editor;
+        internal readonly bool category_vr_support;
+        internal readonly Uri support_url;
+        internal readonly string about_text;
+        internal readonly Uri header_image;
+        internal readonly Uri website;
 
 
 
