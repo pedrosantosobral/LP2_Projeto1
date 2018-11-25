@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-namespace LP2_Projeto1
+namespace LPprojeto1MinhaCopia
 {
     public class Game
     {
@@ -32,43 +32,99 @@ namespace LP2_Projeto1
         private Uri header_image;
         private Uri website;
 
-        public Game(int id, string name, DateTime release_date, int required_age,
-                    int dlc_counts, int metacritic, int movie_count, 
-                    int recommendation_count, int screenshot_count, int owners, 
-                    int number_of_players, int achievment_count, 
-                    bool controller_support, bool platform_windows, 
-                    bool platform_linux, bool platform_mac, 
-                    bool category_singleplayer,bool category_multiplayer,
-                   bool category_coop, bool category_include_level_editor, 
-                    bool category_vr_support, Uri support_url, string about_text,
-                    Uri header_image, Uri website)
-        {
-            this.id = id;
-            this.name = name;
-            this.release_date = release_date;
-            this.required_age = required_age;
-            this.dlc_counts = dlc_counts;
-            this.metacritic = metacritic;
-            this.movie_count = movie_count;
-            this.recommendation_count = recommendation_count;
-            this.screenshot_count = screenshot_count;
-            this.owners = owners;
-            this.number_of_players = number_of_players;
-            this.achievment_count = achievment_count;
-            this.controller_support = controller_support;
-            this.platform_windows = platform_windows;
-            this.platform_mac = platform_mac;
-            this.platform_linux = platform_linux;
-            this.category_singleplayer = category_singleplayer;
-            this.category_multiplayer = category_multiplayer;
-            this.category_coop = category_coop;
-            this.category_include_level_editor = category_include_level_editor;
-            this.category_vr_support = category_vr_support;
-            this.support_url = support_url;
-            this.about_text = about_text;
-            this.header_image = header_image;
-            this.website = website;
 
+
+        public Game(string[] str)
+        {             id = Convert.ToInt32(str[0]);             name = str[1];             release_date = CheckDateTime(str[2]);             required_age = Convert.ToInt32(str[3]);             dlc_counts = Convert.ToInt32(str[4]);             metacritic = Convert.ToInt32(str[5]);             movie_count = Convert.ToInt32(str[6]);             recommendation_count = Convert.ToInt32(str[7]);             screenshot_count = Convert.ToInt32(str[8]);             owners = Convert.ToInt32(str[9]);             number_of_players = Convert.ToInt32(str[10]);             achievment_count = Convert.ToInt32(str[11]);             controller_support = Convert.ToBoolean(str[12]);             platform_windows = Convert.ToBoolean(str[13]);             platform_linux = Convert.ToBoolean(str[14]);             platform_mac = Convert.ToBoolean(str[15]);             category_singleplayer = Convert.ToBoolean(str[16]);             category_multiplayer = Convert.ToBoolean(str[17]);             category_coop = Convert.ToBoolean(str[18]);             category_include_level_editor = Convert.ToBoolean(str[19]);             category_vr_support = Convert.ToBoolean(str[20]);             support_url = CheckUrl(str[21]);             about_text = str[22];             header_image = CheckUrl(str[23]);             website = CheckUrl(str[24]);
+        }
+
+        public void PrintAllValues()
+        {
+            Console.WriteLine("id: " + id);
+            Console.WriteLine("name: " + name);
+            Console.WriteLine("release date: " + release_date.ToString());
+            Console.WriteLine("minimum age:" + required_age);
+            Console.WriteLine("DLCs:" + dlc_counts);
+            Console.WriteLine("metacritic: " + metacritic);
+            Console.WriteLine("movies: " + movie_count);
+            Console.WriteLine("recomendation: " + recommendation_count);
+            Console.WriteLine("screenshots :" + screenshot_count);
+            Console.WriteLine("purchases: " + owners);
+            Console.WriteLine("players: " + number_of_players);
+            Console.WriteLine("achievements: " + achievment_count);
+            Console.WriteLine("have controls: " + controller_support);
+            Console.WriteLine("windows?: " + platform_windows);
+            Console.WriteLine("linux?: " + platform_linux);
+            Console.WriteLine("macOS?: " + platform_mac);
+            Console.WriteLine("sigle player?: " + category_singleplayer);
+            Console.WriteLine("multiplayer?: " + category_multiplayer);
+            Console.WriteLine("coop?: " + category_coop);
+            Console.WriteLine("level editor?: " + category_include_level_editor);
+            Console.WriteLine("vr support?: " + category_vr_support);
+            Console.WriteLine("site: " + PrintUrl(support_url));
+            Console.WriteLine("about: " + about_text);
+            Console.WriteLine("image url: " + PrintUrl(header_image));
+            Console.WriteLine("prints url: " + PrintUrl(website));
+
+        }
+
+
+        public Uri CheckUrl(string str)
+        {
+            Uri tempUrl;
+            if (str.ToLower() == "none")
+            {
+                tempUrl = null;
+                return tempUrl;
+            }
+            else
+            {
+
+                bool isUrl = Uri.TryCreate(str, UriKind.RelativeOrAbsolute, out tempUrl);
+                if (isUrl == false)
+                {
+                    tempUrl = null;
+                }
+                return tempUrl;
+            }
+
+        }
+
+        public DateTime CheckDateTime(string str)
+        {
+            DateTime tempDateTime;
+            if (str.ToLower() == " ")
+            {
+                tempDateTime = default(DateTime);
+                return tempDateTime;
+            }
+            else
+            {
+
+                bool isDateTime = DateTime.TryParse(str, out tempDateTime);
+                if (isDateTime == false)
+                {
+                    tempDateTime = default(DateTime);
+                }
+                return tempDateTime;
+            }
+
+        }
+
+        public string PrintUrl(Uri url)
+        {
+            string s;
+            if (url == null)
+            {
+                s = "None.";
+            }
+            else
+            {
+                s = url.ToString();
+            }
+
+            return s;
         }
     }
 }
+
