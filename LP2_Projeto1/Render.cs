@@ -14,6 +14,10 @@ namespace LPprojeto1MinhaCopia
         }
 
         public string[] selections = new string[14];
+        string name;
+        DateTime dt;
+        int[] intFilters = new int[3];
+        bool[] boolFilters = new bool[9];
 
         public void ShowMainMenu()
         {
@@ -72,7 +76,7 @@ namespace LPprojeto1MinhaCopia
             bool returnvalue = false;
 
             Console.WriteLine("PICK AN OPTION:");
-            Console.WriteLine("1 -> PICK ORDERING TYPE | CURRENT IS " + selections[14]);
+            Console.WriteLine("1 -> PICK ORDERING TYPE | CURRENT IS " + selections[13]);
             Console.WriteLine("2 -> PICK FILTERS");
             Console.WriteLine("3 -> START SEARCH");
             Console.WriteLine("");
@@ -180,15 +184,15 @@ namespace LPprojeto1MinhaCopia
 
         public void ShowFilterMenu() 
         {
-            Console.WriteLine("Filters added: NAME; {0} | DATE: {1} | AGE: {2} |" +
+            Console.WriteLine("Filters added: NAME: {0} | DATE: {1} | AGE: {2} |" +
                               " METACRITIC: {3} | RECOMENDATIONS: {4} |" +
                               " CONTROLER SUPPORT {5} | FOR WINDOWS: {6} |" +
                               " FOR LINUX: {7} | FOR MAC: " +
                               "{8} | SINGLEPLAYER: {9} | MULTIPLAYER: {10} | " +
-                              "COOPERATIVA {11} | LEVEL EDITOR: {12} | VR SUPORT: {13} ", selections[0], selections[1],
-                              selections[2], selections[3], selections[4], selections[5],
-                              selections[6], selections[7], selections[8], selections[9],
-                              selections[10], selections[11], selections[12], selections[13]);
+                              "COOPERATIVA {11} | LEVEL EDITOR: {12} | VR SUPORT: {13} ", name, dt,
+                              intFilters[0], intFilters[1], intFilters[2], boolFilters[0],
+                              boolFilters[1], boolFilters[2], boolFilters[3], boolFilters[4],
+                              boolFilters[5], boolFilters[6], boolFilters[7], boolFilters[8]);
             Console.WriteLine("ADD FILTERS: ");
             Console.WriteLine("1  -> NAME");
             Console.WriteLine("2  -> DATE");
@@ -209,86 +213,95 @@ namespace LPprojeto1MinhaCopia
             Console.WriteLine("0  -> BACK");
 
             int choice3 = Convert.ToInt32(Console.ReadLine());
+            string input;
 
             switch (choice3)
             {
                 case 1:
                     Console.Clear();
                     Console.WriteLine("INSERT NAME");
-                    selections[0] = Console.ReadLine();
+                    name = Console.ReadLine();
                     Console.Clear();
                     ShowFilterMenu();
                     break;
                 case 2:
                     Console.Clear();
                     Console.WriteLine("INSERT DATE(DAY/MONTH/YEAR)");
-                    selections[1] = Console.ReadLine();
+                    input = Console.ReadLine();
+                    DateTime.TryParse(input, out DateTime dt);
+                    this.dt = dt;
                     Console.Clear();
                     ShowFilterMenu();
                     break;
                 case 3:
                     Console.Clear();
                     Console.WriteLine("INSERT AGE");
-                    selections[2] = Console.ReadLine();
+                    input = Console.ReadLine();
+                    int.TryParse(input, out int req_age);
+                    intFilters[0] = req_age;
                     Console.Clear();
                     ShowFilterMenu();
                     break;
                 case 4:
                     Console.Clear();
-                    Console.WriteLine("INSERT DATE(DAY/MONTH/YEAR)");
-                    selections[3] = Console.ReadLine();
+                    Console.WriteLine("INSERT METACRITIC");
+                    input = Console.ReadLine();
+                    int.TryParse(input, out int meta);
+                    intFilters[1] = meta;
                     Console.Clear();
                     ShowFilterMenu();
                     break;
                 case 5:
                     Console.Clear();
-                    Console.WriteLine("INSERT DATE(DAY/MONTH/YEAR)");
-                    selections[4] = Console.ReadLine();
+                    Console.WriteLine("INSERT RECOMENDATIONS");
+                    input = Console.ReadLine();
+                    int.TryParse(input, out int reco);
+                    intFilters[2] = reco;
                     Console.Clear();
                     ShowFilterMenu();
                     break;
                 case 6:
-                    selections[5] = "TRUE";
+                    boolFilters[0] = true;
                     Console.Clear();
                     ShowFilterMenu();
                     break;
                 case 7:
-                    selections[6] = "TRUE";
+                    boolFilters[1] = true;
                     Console.Clear();
                     ShowFilterMenu();
                     break;
                 case 8:
-                    selections[7] = "TRUE";
+                    boolFilters[2] = true;
                     Console.Clear();
                     ShowFilterMenu();
                     break;
                 case 9:
-                    selections[8] = "TRUE";
+                    boolFilters[3] = true;
                     Console.Clear();
                     ShowFilterMenu();
                     break;
                 case 10:
-                    selections[9] = "TRUE";
+                    boolFilters[4] = true;
                     Console.Clear();
                     ShowFilterMenu();
                     break;
                 case 11:
-                    selections[10] = "TRUE";
+                    boolFilters[5] = true;
                     Console.Clear();
                     ShowFilterMenu();
                     break;
                 case 12:
-                    selections[11] = "TRUE";
+                    boolFilters[6] = true;
                     Console.Clear();
                     ShowFilterMenu();
                     break;
                 case 13:
-                    selections[12] = "TRUE";
+                    boolFilters[7] = true;
                     Console.Clear();
                     ShowFilterMenu();
                     break;
                 case 14:
-                    selections[13] = "TRUE";
+                    boolFilters[8] = true;
                     Console.Clear();
                     ShowFilterMenu();
                     break;
@@ -306,7 +319,7 @@ namespace LPprojeto1MinhaCopia
                     break;
             }
 
-            filters.ApplyFilters(selections);
+            filters.ApplyFilters(boolFilters, intFilters, name, dt);
 
         }
 
