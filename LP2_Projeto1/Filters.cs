@@ -105,10 +105,5 @@ namespace LPprojeto1MinhaCopia
             }
 
         }
-
-        public void Search()
-        {
-        }
-
     }
 }
