@@ -4,9 +4,16 @@ namespace LPprojeto1MinhaCopia
 {
     public class Render
     {
+        List<Game> searchList;
+
+        public Render(List<Game> searchList)
+        {
+            this.searchList = searchList;
+        }
+
         public string[] selections = { "NONE", "NONE", "NONE", 
             "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", 
-            "NONE", "NONE", "NONE", "NONE"};
+            "NONE", "NONE", "NONE", "NONE" , "NONE"};
 
         public void ShowMainMenu()
         {
@@ -22,8 +29,35 @@ namespace LPprojeto1MinhaCopia
             {
                 case 1:
                     Console.Clear();
-                    ShowMainMenu();
-                    //ShowGame();
+                    Console.WriteLine("INSERT DESIRED GAME ID TO SHOW:");
+                    selections[15]= Console.ReadLine();
+                    if (selections[15] != "NONE")
+                    {
+                        int desiredID = Convert.ToInt32(selections[15]);
+                        if ((desiredID % 10) == 0)
+                        {
+                            foreach (Game g in searchList)
+                            {
+                                if (g.id == desiredID)
+                                {
+                                    g.PrintAllValues();
+                                    break;
+                                }
+                                else
+                                {
+                                    Console.Clear();
+                                    Console.WriteLine("This game does not exist");
+                                }
+                            }
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            Console.WriteLine("This game does not exist");
+                        }
+
+
+                    }
                     break;
                 case 2:
                     Console.Clear();
