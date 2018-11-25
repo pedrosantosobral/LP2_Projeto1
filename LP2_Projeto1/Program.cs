@@ -7,9 +7,8 @@ namespace LPprojeto1MinhaCopia
     {
         static void Main(string[] args)
         {
-            ReadFile file = new ReadFile("/Users/pedrosantos/Desktop/LPprojeto1MinhaCopia/LPprojeto1MinhaCopia/games.csv");
+            ReadFile file = new ReadFile("/Users/joanamarques/Desktop/LP2_Projeto1/LP2_Projeto1/games.csv");
             Render render = new Render(file.searchList);
-            Filters filter = new Filters(render.selections, file.searchList);
             render.ShowMainMenu();
 
         }
