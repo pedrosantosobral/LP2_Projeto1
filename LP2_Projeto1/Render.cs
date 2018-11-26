@@ -1,27 +1,59 @@
 ﻿using System;
 using System.Collections.Generic;
-namespace LPprojeto1MinhaCopia
+
+namespace LP2_Projeto1
 {
+    /// <summary>
+    /// Class that shows all the UI to the player
+    /// </summary>
     public class Render
     {
         List<Game> searchList;
         Filters filters;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:LP2_Projeto1.Render"/> class.
+        /// </summary>
+        /// <param name="searchList">Search list.</param>
         public Render(List<Game> searchList)
         {
             this.searchList = searchList;
             filters = new Filters(searchList);
         }
 
-        public string[] selections = new string[14];
+       // public string[] selections = new string[14];
+        /// <summary>
+        /// Variable to store the game name
+        /// </summary>
         string name;
+
+        /// <summary>
+        /// Variable to store the date
+        /// </summary>
         DateTime dt;
+
+        /// <summary>
+        /// Array to store the ints
+        /// </summary>
         int[] intFilters = new int[3];
+
+        /// <summary>
+        /// Array to store the bools
+        /// </summary>
         bool[] boolFilters = new bool[9];
+
+        /// <summary>
+        /// Variable to store the order that the player wants to use
+        /// </summary>
         public string order;
 
+        /// <summary>
+        /// Shows the main menu
+        /// </summary>
         public void ShowMainMenu()
         {
+            /// The infinit cycle that only ends when the player chooses the 3rd
+            /// option
             while (true)
             {
                 Console.Clear();
@@ -31,22 +63,30 @@ namespace LPprojeto1MinhaCopia
                 Console.WriteLine("2 -> MAKE ADVANCED SEARCH");
                 Console.WriteLine("3 -> EXIT");
 
+                ///Variable to store the choice from the user input
                 string choice0 = Console.ReadLine();
 
+                /// Cycle that will make different actions according to the user's
+                /// choice
                 switch (choice0)
                 {
+                    /// Shows all the information from a specific game
                     case "1":
                         Console.Clear();
                         Console.WriteLine("INSERT DESIRED GAME ID TO SHOW:");
                         string temp = Console.ReadLine();
                         if (int.TryParse(temp, out int id))
                         {
+                            /// The foreach will execute only if the id is valid
                             if ((id % 10) == 0)
                             {
+                                ///Go through the List to find the id corrependent
+                                /// to the id that the user chose
                                 foreach (Game g in searchList)
                                 {
                                     if (g.id == id)
                                     {
+                                        ///Prints all the values
                                         g.PrintAllValues();
                                         g.DownloadImage();
                                         break;
@@ -61,10 +101,14 @@ namespace LPprojeto1MinhaCopia
                             Console.ReadKey();
                         }
                         break;
+
+                    ///Show the next menu (the advanced search menu)
                     case "2":
                         Console.Clear();
                         ShowSearchMenu();
                         break;
+
+                    /// Exists the program
                     case "3":
                         System.Environment.Exit(0);
                         break;
@@ -73,8 +117,13 @@ namespace LPprojeto1MinhaCopia
 
         }
 
+        /// <summary>
+        /// Shows the search menu.
+        /// </summary>
         public void ShowSearchMenu()
         {
+            /// The infinit cycle that only ends when the player chooses the 4th
+            /// option (0)
             while (true)
             {
                 Console.Clear();
@@ -85,8 +134,10 @@ namespace LPprojeto1MinhaCopia
                 Console.WriteLine("");
                 Console.WriteLine("0 -> BACK");
 
+                ///Variable to store the choice from the user input
                 string choice1 = Console.ReadLine();
 
+                ///Switch to decide what to show to the user
                 switch (choice1)
                 {
                     case "1":
@@ -102,14 +153,19 @@ namespace LPprojeto1MinhaCopia
                         ShowSearchResults();
                         break;
                 }
-
+                /// If the user choose "0", the cycle will end
                 if (choice1 == "0") break;
             }
 
         }
 
+        /// <summary>
+        /// Shows the order menu.
+        /// </summary>
         public void ShowOrderMenu()
         {
+            /// The infinit cycle that only ends when the player chooses the 10th
+            /// option (0)
             while (true)
             {
                 Console.Clear();
@@ -128,8 +184,12 @@ namespace LPprojeto1MinhaCopia
                 Console.WriteLine(" ");
                 Console.WriteLine("0 -> GO BACK");
 
+                ///Variable to store the choice from the user input
                 string choice2 = Console.ReadLine();
 
+
+                ///This switch is to apply the sort for ordering the games
+                /// in the differentes cases, the order is different
                 switch (choice2)
                 {
                     case "1":
@@ -179,13 +239,19 @@ namespace LPprojeto1MinhaCopia
                         break;
                 }
 
+                /// If the user choose "0", the cycle will end
                 if (choice2 == "0") break;
             }
 
         }
 
+        /// <summary>
+        /// Shows the filter menu.
+        /// </summary>
         public void ShowFilterMenu() 
         {
+            /// The infinit cycle that only ends when the player chooses the 15th
+            /// option (0)
             while (true)
             {
                 Console.Clear();
@@ -216,9 +282,15 @@ namespace LPprojeto1MinhaCopia
                 Console.WriteLine(" ");
                 Console.WriteLine("0  -> BACK");
 
+                ///Variable to store the choice from the user input
                 string choice3 = Console.ReadLine();
+
+                ///Temporary variable to store the input (date) from the user 
                 string input;
 
+                ///This switch is to show and let the user choose the filters
+                /// Stores the user input in the variables name and dt and the arrays
+                /// of bools and ints
                 switch (choice3)
                 {
                     case "1":
@@ -227,6 +299,7 @@ namespace LPprojeto1MinhaCopia
                         name = Console.ReadLine();
                         Console.Clear();
                         break;
+
                     case "2":
                         Console.Clear();
                         Console.WriteLine("INSERT DATE(DAY/MONTH/YEAR)");
@@ -235,6 +308,7 @@ namespace LPprojeto1MinhaCopia
                         this.dt = dt;
                         Console.Clear();
                         break;
+
                     case "3":
                         Console.Clear();
                         Console.WriteLine("INSERT AGE");
@@ -243,6 +317,7 @@ namespace LPprojeto1MinhaCopia
                         intFilters[0] = req_age;
                         Console.Clear();
                         break;
+
                     case "4":
                         Console.Clear();
                         Console.WriteLine("INSERT METACRITIC");
@@ -251,6 +326,7 @@ namespace LPprojeto1MinhaCopia
                         intFilters[1] = meta;
                         Console.Clear();
                         break;
+
                     case "5":
                         Console.Clear();
                         Console.WriteLine("INSERT RECOMENDATIONS");
@@ -259,53 +335,71 @@ namespace LPprojeto1MinhaCopia
                         intFilters[2] = reco;
                         Console.Clear();
                         break;
+
                     case "6":
                         boolFilters[0] = true;
                         Console.Clear();
                         break;
+
                     case "7":
                         boolFilters[1] = true;
                         Console.Clear();
                         break;
+
                     case "8":
                         boolFilters[2] = true;
                         Console.Clear();
                         break;
+
                     case "9":
                         boolFilters[3] = true;
                         Console.Clear();
                         break;
+
                     case "10":
                         boolFilters[4] = true;
                         Console.Clear();
                         break;
+
                     case "11":
                         boolFilters[5] = true;
                         Console.Clear();
                         break;
+
                     case "12":
                         boolFilters[6] = true;
                         Console.Clear();
                         break;
+
                     case "13":
                         boolFilters[7] = true;
                         Console.Clear();
                         break;
+
                     case "14":
                         boolFilters[8] = true;
                         Console.Clear();
                         break;
                 }
 
+                /// If the user choose "0", the cycle will end
                 if (choice3 == "0") break;
             }
+            ///Applies the filters
             filters.ApplyFilters(boolFilters, intFilters, name, dt);
         }
 
+        /// <summary>
+        /// Shows the search results.
+        /// </summary>
         public void ShowSearchResults()
         {
+            ///Variables to hel show only 10 games at the time
             int index = 0;
             int count = 10;
+
+            ///Go through the filteredList to show the results of the search 
+            /// that the user did
             foreach (Game g in filters.filteredList)
             {
                 index++;
@@ -320,6 +414,7 @@ namespace LPprojeto1MinhaCopia
                 Console.WriteLine($"ACHIEVEMENTE COUNT: {g.achievment_count}");
                 Console.WriteLine();
 
+                ///Show only 10 games at a time
                 if(count - index == 0 || filters.filteredList.Count - index == 0)
                 {
                     count += 10;
@@ -328,6 +423,7 @@ namespace LPprojeto1MinhaCopia
                     Console.Clear();
                 }
 
+                ///Clears the List with the searches 
                 filters.filteredList = filters.searchList;
             }
         }

@@ -1,8 +1,11 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Net;
-namespace LPprojeto1MinhaCopia
+
+namespace LP2_Projeto1
 {
+    /// <summary>
+    /// Class Game that contais all the variables to be used in other classes
+    /// </summary>
     public class Game
     {
         internal readonly int id;
@@ -32,11 +35,18 @@ namespace LPprojeto1MinhaCopia
         internal readonly Uri website;
 
 
-
+        /// <summary>
+        /// Constructor that converts all the values
+        /// Initializes a new instance of the <see cref="T:LP2_Projeto1.Game"/> class.
+        /// </summary>
+        /// <param name="str">String.</param>
         public Game(string[] str)
         {             id = Convert.ToInt32(str[0]);             name = str[1];             release_date = CheckDateTime(str[2]);             required_age = Convert.ToInt32(str[3]);             dlc_counts = Convert.ToInt32(str[4]);             metacritic = Convert.ToInt32(str[5]);             movie_count = Convert.ToInt32(str[6]);             recommendation_count = Convert.ToInt32(str[7]);             screenshot_count = Convert.ToInt32(str[8]);             owners = Convert.ToInt32(str[9]);             number_of_players = Convert.ToInt32(str[10]);             achievment_count = Convert.ToInt32(str[11]);             controller_support = Convert.ToBoolean(str[12]);             platform_windows = Convert.ToBoolean(str[13]);             platform_linux = Convert.ToBoolean(str[14]);             platform_mac = Convert.ToBoolean(str[15]);             category_singleplayer = Convert.ToBoolean(str[16]);             category_multiplayer = Convert.ToBoolean(str[17]);             category_coop = Convert.ToBoolean(str[18]);             category_include_level_editor = Convert.ToBoolean(str[19]);             category_vr_support = Convert.ToBoolean(str[20]);             support_url = CheckUrl(str[21]);             about_text = str[22];             header_image = CheckUrl(str[23]);             website = CheckUrl(str[24]);
         }
 
+        /// <summary>
+        /// Method to print all the game values from the file
+        /// </summary>
         public void PrintAllValues()
         {
             Console.WriteLine("ID: " + id);
@@ -66,10 +76,15 @@ namespace LPprojeto1MinhaCopia
             Console.WriteLine("PRINTS URL: " + PrintUrl(website));
         }
 
-
+        /// <summary>
+        /// Verify if the file has url or the name 'none'
+        /// </summary>
+        /// <returns>The URL.</returns>
+        /// <param name="str">String.</param>
         public Uri CheckUrl(string str)
         {
             Uri tempUrl;
+            /// If 'none', keeps the url null
             if (str.ToLower() == "none")
             {
                 tempUrl = null;
@@ -77,7 +92,7 @@ namespace LPprojeto1MinhaCopia
             }
             else
             {
-
+                ///Tries to create the url
                 bool isUrl = Uri.TryCreate(str, UriKind.RelativeOrAbsolute, out tempUrl);
                 if (isUrl == false)
                 {
@@ -88,9 +103,15 @@ namespace LPprojeto1MinhaCopia
 
         }
 
+        /// <summary>
+        /// verify of the file has date or a space
+        /// </summary>
+        /// <returns>The date time.</returns>
+        /// <param name="str">String.</param>
         public DateTime CheckDateTime(string str)
         {
             DateTime tempDateTime;
+            ///If there is a space, keeps the default value
             if (str.ToLower() == " ")
             {
                 tempDateTime = default(DateTime);
@@ -98,7 +119,6 @@ namespace LPprojeto1MinhaCopia
             }
             else
             {
-
                 bool isDateTime = DateTime.TryParse(str, out tempDateTime);
                 if (isDateTime == false)
                 {
@@ -109,6 +129,11 @@ namespace LPprojeto1MinhaCopia
 
         }
 
+        /// <summary>
+        ///  Print the url
+        /// </summary>
+        /// <returns>The URL.</returns>
+        /// <param name="url">URL.</param>
         public string PrintUrl(Uri url)
         {
             string s;
@@ -124,6 +149,9 @@ namespace LPprojeto1MinhaCopia
             return s;
         }
 
+        /// <summary>
+        /// Method to download the game image
+        /// </summary>
         public void DownloadImage()
         {
             using(WebClient client = new WebClient())
@@ -131,8 +159,9 @@ namespace LPprojeto1MinhaCopia
                 if (header_image != null)
                     client.DownloadFile(header_image, "image.jpg");
             }
-
-            Process.Start("image.jpg");
+            /// Open image after it downloads (ps: i couldn't make it work on mac
+            /// but i know that it works on windows)
+           // Process.Start("image.jpg");
         }
     }
 }
