@@ -18,6 +18,7 @@ namespace LPprojeto1MinhaCopia
         DateTime dt;
         int[] intFilters = new int[3];
         bool[] boolFilters = new bool[9];
+        public string order;
 
         public void ShowMainMenu()
         {
@@ -47,12 +48,8 @@ namespace LPprojeto1MinhaCopia
                                     if (g.id == id)
                                     {
                                         g.PrintAllValues();
+                                        g.DownloadImage();
                                         break;
-                                    }
-                                    else
-                                    {
-                                        Console.Clear();
-                                        Console.WriteLine("This game does not exist");
                                     }
                                 }
                             }
@@ -61,6 +58,7 @@ namespace LPprojeto1MinhaCopia
                                 Console.Clear();
                                 Console.WriteLine("This game does not exist");
                             }
+                            Console.ReadKey();
                         }
                         break;
                     case "2":
@@ -81,7 +79,7 @@ namespace LPprojeto1MinhaCopia
             {
                 Console.Clear();
                 Console.WriteLine("PICK AN OPTION:");
-                Console.WriteLine("1 -> PICK ORDERING TYPE | CURRENT IS " + selections[13]);
+                Console.WriteLine("1 -> PICK ORDERING TYPE | CURRENT IS " + order);
                 Console.WriteLine("2 -> PICK FILTERS");
                 Console.WriteLine("3 -> START SEARCH");
                 Console.WriteLine("");
@@ -115,7 +113,7 @@ namespace LPprojeto1MinhaCopia
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("CURRENT ORDERING TYPE: " + selections[13]);
+                Console.WriteLine("CURRENT ORDERING TYPE: " + order);
                 Console.WriteLine("");
                 Console.WriteLine("PICK ONE ORDER TYPE:");
                 Console.WriteLine("1 -> ID");
@@ -135,39 +133,48 @@ namespace LPprojeto1MinhaCopia
                 switch (choice2)
                 {
                     case "1":
-                        selections[13] = "ID";
+                        order = "ID";
+                        filters.ApplySort(order);
                         Console.Clear();
                         break;
                     case "2":
-                        selections[13] = "NAME";
+                        order = "NAME";
+                        filters.ApplySort(order);
                         Console.Clear();
                         break;
                     case "3":
-                        selections[13] = "LAUNCH DATE";
+                        order = "RELEASE DATE";
+                        filters.ApplySort(order);
                         Console.Clear();
                         break;
                     case "4":
-                        selections[13] = "METACRITIC";
+                        order = "METACRITIC";
+                        filters.ApplySort(order);
                         Console.Clear();
                         break;
                     case "5":
-                        selections[13] = "NUMBER OF DLCs";
+                        order = "NUMBER OF DLCs";
+                        filters.ApplySort(order);
                         Console.Clear();
                         break;
                     case "6":
-                        selections[13] = "RECOMENDATIONS";
+                        order = "RECOMENDATIONS";
+                        filters.ApplySort(order);
                         Console.Clear();
                         break;
                     case "7":
-                        selections[13] = "NUMBER OF OWNERS";
+                        order = "NUMBER OF OWNERS";
+                        filters.ApplySort(order);
                         Console.Clear();
                         break;
                     case "8":
-                        selections[13] = "NUMBER OF PLAYERS";
+                        order = "NUMBER OF PLAYERS";
+                        filters.ApplySort(order);
                         Console.Clear();
                         break;
                     case "9":
-                        selections[13] = "NUMBER OF ACHIEVEMENTS";
+                        order = "NUMBER OF ACHIEVEMENTS";
+                        filters.ApplySort(order);
                         Console.Clear();
                         break;
                 }
@@ -206,7 +213,6 @@ namespace LPprojeto1MinhaCopia
                 Console.WriteLine("12 -> COOPERATIVE");
                 Console.WriteLine("13 -> LEVEL EDITOR");
                 Console.WriteLine("14 -> VR SUPPORT");
-                Console.WriteLine("15 -> CLEAR FILTERS");
                 Console.WriteLine(" ");
                 Console.WriteLine("0  -> BACK");
 
@@ -298,9 +304,11 @@ namespace LPprojeto1MinhaCopia
 
         public void ShowSearchResults()
         {
-            int index = 1;
+            int index = 0;
+            int count = 10;
             foreach (Game g in filters.filteredList)
             {
+                index++;
                 Console.WriteLine($"ID: {g.id}");
                 Console.WriteLine($"NAME: {g.name}");
                 Console.WriteLine($"RELEASE DATE: {g.release_date}");
@@ -311,14 +319,16 @@ namespace LPprojeto1MinhaCopia
                 Console.WriteLine($"NUMBER OF PLAYERS: {g.number_of_players}");
                 Console.WriteLine($"ACHIEVEMENTE COUNT: {g.achievment_count}");
                 Console.WriteLine();
-                index++;
 
-                if(index == 10)
+                if(count - index == 0 || filters.filteredList.Count - index == 0)
                 {
+                    count += 10;
                     Console.WriteLine("PRESS ANY KEY TO CONTINUE VIEWING THE VALUES.");
                     Console.ReadKey();
                     Console.Clear();
                 }
+
+                filters.filteredList = filters.searchList;
             }
         }
 
