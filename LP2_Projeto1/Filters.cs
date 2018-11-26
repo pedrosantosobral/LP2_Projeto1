@@ -15,18 +15,18 @@ namespace LPprojeto1MinhaCopia
             filteredList = searchList;
         }
 
-        public void ApplyFilters(bool[] boolFilters, int[] intFilters, 
+        public void ApplyFilters(bool[] boolFilters, int[] intFilters,
                                  string name, DateTime dt)
         {
-            if(name != null)
+            if (name != null)
             {
-                filteredList = filteredList.Where(game => 
+                filteredList = filteredList.Where(game =>
                 game.name.ToLower().Contains(name.ToLower())).ToList();
             }
 
-            if(dt != DateTime.MinValue)
+            if (dt != DateTime.MinValue)
             {
-                filteredList = filteredList.Where(game => game.release_date > 
+                filteredList = filteredList.Where(game => game.release_date >
                 dt).ToList();
             }
 
@@ -52,7 +52,7 @@ namespace LPprojeto1MinhaCopia
 
             if (boolFilters[0] != false)
             {
-                filteredList = filteredList.Where(game => game.controller_support 
+                filteredList = filteredList.Where(game => game.controller_support
                                                   == true).ToList();
             }
 
@@ -105,5 +105,51 @@ namespace LPprojeto1MinhaCopia
             }
 
         }
+
+        public void ApplySort(string order)
+        {
+
+            switch (order)
+            {
+                case "ID":
+                    filteredList.Sort((x, y) => x.id.CompareTo(y.id));
+                    Console.Clear();
+                    break;
+                case "NAME":
+                    filteredList.Sort((x, y) => x.name.CompareTo(y.name));
+                    Console.Clear();
+                    break;
+                case "RELEASE DATE":
+                    filteredList.Sort((x, y) => y.release_date.CompareTo(x.release_date));
+                    Console.Clear();
+                    break;
+                case "METACRITIC":
+                    filteredList.Sort((x, y) => y.metacritic.CompareTo(x.metacritic));
+                    Console.Clear();
+                    break;
+                case "NUMBER OF DLCs":
+                    filteredList.Sort((x, y) => y.dlc_counts.CompareTo(x.dlc_counts));
+                    Console.Clear();
+                    break;
+                case "RECOMMENDATIONS":
+                    filteredList.Sort((x, y) => y.recommendation_count.CompareTo(x.recommendation_count));
+                    Console.Clear();
+                    break;
+                case "NUMBER OS OWNERS":
+                    filteredList.Sort((x, y) => y.owners.CompareTo(x.owners));
+                    Console.Clear();
+                    break;
+                case "NUMBER OF PLAYERS":
+                    filteredList.Sort((x, y) => y.number_of_players.CompareTo(x.number_of_players));
+                    Console.Clear();
+                    break;
+                case "NUMBER OF ACHIEVEMENTS":
+                    filteredList.Sort((x, y) => y.achievment_count.CompareTo(x.achievment_count));
+                    Console.Clear();
+                    break;
+            }
+
+        }
+
     }
 }
