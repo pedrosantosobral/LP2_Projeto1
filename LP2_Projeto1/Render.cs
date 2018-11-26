@@ -73,7 +73,7 @@ namespace LP2_Projeto1
                     /// Shows all the information from a specific game
                     case "1":
                         Console.Clear();
-                        Console.WriteLine("INSERT DESIRED GAME ID TO SHOW:");
+                        Console.WriteLine("INSERT DESIRED GAME ID TO SHOW INFORMATION:");
                         string temp = Console.ReadLine();
                         if (int.TryParse(temp, out int id))
                         {
@@ -96,7 +96,7 @@ namespace LP2_Projeto1
                             else
                             {
                                 Console.Clear();
-                                Console.WriteLine("This game does not exist");
+                                Console.WriteLine("THIS GAME DOES NOT EXIST");
                             }
                             Console.ReadKey();
                         }
@@ -255,7 +255,7 @@ namespace LP2_Projeto1
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("Filters added: NAME: {0} | DATE: {1} | AGE: {2} |" +
+                Console.WriteLine("FILTERS ADDED: NAME: {0} | DATE: {1} | AGE: {2} |" +
                                   " METACRITIC: {3} | RECOMENDATIONS: {4} |" +
                                   " CONTROLER SUPPORT {5} | FOR WINDOWS: {6} |" +
                                   " FOR LINUX: {7} | FOR MAC: " +
@@ -302,7 +302,7 @@ namespace LP2_Projeto1
 
                     case "2":
                         Console.Clear();
-                        Console.WriteLine("INSERT DATE(DAY/MONTH/YEAR)");
+                        Console.WriteLine("INSERT DATE (DAY/MONTH/YEAR)");
                         input = Console.ReadLine();
                         DateTime.TryParse(input, out DateTime dt);
                         this.dt = dt;
@@ -329,7 +329,7 @@ namespace LP2_Projeto1
 
                     case "5":
                         Console.Clear();
-                        Console.WriteLine("INSERT RECOMENDATIONS");
+                        Console.WriteLine("INSERT NUMBER OF RECOMENDATIONS");
                         input = Console.ReadLine();
                         int.TryParse(input, out int reco);
                         intFilters[2] = reco;
